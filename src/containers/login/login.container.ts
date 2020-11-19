@@ -12,8 +12,9 @@ export class LoginContainer {
   constructor(private userAccessService: UserAccessService) { }
 
   submitLoginForm(data: any) {
-    this.userAccessService.login(data).subscribe(result => {
-      console.log(result);
+    this.userAccessService.login(data).subscribe(response => {
+      console.log(response);
+      localStorage.setItem('token', response)
     }, err => {
       console.log(err)
     })
