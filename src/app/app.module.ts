@@ -4,11 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { Components } from '../components';
 import { Containers } from '../containers';
-
-import { NgModule } from '@angular/core';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
+import { Material } from 'src/material';
+import { NgModule } from '@angular/core';
+import { Services } from 'src/services';
 
 @NgModule({
   declarations: [
@@ -21,11 +21,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    HttpClientModule,
+    Material,
     ReactiveFormsModule,
-    
-
   ],
-  providers: [],
+  providers: [Services],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

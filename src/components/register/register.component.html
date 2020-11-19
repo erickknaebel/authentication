@@ -1,51 +1,44 @@
 <div class="container">
-    <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+    <div class="row">
+        <div class="col">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Register For Access</h3>
                 </div>
                 <div class="panel-body">
-                    <form >
+                    <form>
                         <div class="row" [formGroup]="registrationForm">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" name="firstName" id="firstName" class="form-control input-sm"
-                                    formControlName="firstName" placeholder="First Name">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" name="lastName" id="lastName" class="form-control input-sm"
-                                    formControlName="lastName" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <input type="email" name="emailAddress" id="emailAddress" class="form-control input-sm"
-                                    formControlName="emailAddress" placeholder="Email Address">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control input-sm"
-                                    formControlName="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <input type="password" name="passwordConfirmation" id="passwordConfirmation"
-                                    class="form-control input-sm" formControlName="passwordConfirmation" placeholder="Confirm Password">
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <input type="text" name="displayName" id="displayName"
-                                    class="form-control input-sm" formControlName="displayName" placeholder="Display Name">
-                                </div>
+                            <div class="col">
+                                <mat-form-field>
+                                    <mat-label>Frist Name</mat-label>
+                                    <input matInput formControlName="firstName" required value="">
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput formControlName="lastName" required value="">
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Email Address</mat-label>
+                                    <input matInput formControlName="emailAddress" required value="">
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput type="password" formControlName="password" required value="">
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Confirm Password</mat-label>
+                                    <input matInput type="password" formControlName="confirmPassword" required value="">
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Display Name</mat-label>
+                                    <input matInput formControlName="displayName" value="">
+                                </mat-form-field>
+                                <button mat-raised-button color="primary" [disabled]="!registrationForm.valid"
+                                    (click)="submitRegistrationForm()">Send</button>
+                                <button mat-raised-button color="warn"
+                                    (click)="clearRegistrationForm()">Reset</button>
                             </div>
                         </div>
-                        <input value="Register" class="btn btn-info btn-block" (click)='submitRegistration()'>
                     </form>
                 </div>
             </div>

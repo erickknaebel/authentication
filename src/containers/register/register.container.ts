@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscriber } from 'rxjs';
+import { RegisterComponent } from 'src/components/register/register.component';
+import { UserAccessService } from 'src/services/user-access.service';
 
 @Component({
   selector: 'app-register-container',
-  templateUrl: './register.container.html',
-  styleUrls: ['./register.container.scss']
+  template: '<app-register-component (onRegister)="submitRegistrationForm($event)"></app-register-component>',
+  styles: []
 })
-export class RegisterContainer implements OnInit {
+export class RegisterContainer {
 
-  constructor() { }
+  @ViewChild(RegisterComponent, null) registerForm:RegisterComponent;
 
-  ngOnInit() {
+  constructor(private userAccessService: UserAccessService) { }
+
+  submitRegistrationForm(data: any) {
+    this.userAccessService.register(data).subscribe(result => {
+      this.registerForm.clearRegistrationForm();
+      console.log(result)
+    }, err => {
+      console.log(JSON.parse(err.error).Error)
+    });
   }
 
 }

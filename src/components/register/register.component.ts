@@ -1,38 +1,51 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
+import { MustMatch } from '../../helpers/validators';
 
 @Component({
   selector: 'app-register-component',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   @Output() onRegister: EventEmitter<any> = new EventEmitter<any>();
-  
+
   registrationForm: FormGroup;
 
-  constructor() { 
-    this.registrationForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      emailAddress: new FormControl('', [
+  constructor(private formBuilder: FormBuilder) {
+    this.registrationForm = this.formBuilder.group({
+      firstName: new FormControl('', [
         Validators.required, 
+        Validators.pattern("[a-zA-Z]{5,}")
+      ]),
+      lastName: new FormControl('', [
+        Validators.required, 
+        Validators.pattern("[a-zA-Z]{5,}")
+      ]),
+      emailAddress: new FormControl('', [
+        Validators.required,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
       ]),
-      password: new FormControl('', Validators.required),
-      displayName: new FormControl('', Validators.required),
+      password: new FormControl('', [
+        Validators.required,
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+      ]),
+      displayName: new FormControl('', {}),
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
     })
   }
 
-  ngOnInit() {
+  public submitRegistrationForm(): void {
+    this.onRegister.emit(this.registrationForm.getRawValue());
   }
 
-  public submitRegistration(): void {
-    console.log('submitting registration....')
-    console.log(this.registrationForm.getRawValue())
-    this.onRegister.emit(this.registrationForm.getRawValue());
+  public clearRegistrationForm(): void {
+    this.registrationForm.reset();
   }
 
 }
