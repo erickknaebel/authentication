@@ -13,4 +13,10 @@ export class UserAccessService {
       JSON.stringify(data),
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' });
   }
+
+  login(data: any) {
+    return this.http.post('http://localhost:3000/api/users/login',
+      JSON.stringify(data),
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' });
+  }
 }

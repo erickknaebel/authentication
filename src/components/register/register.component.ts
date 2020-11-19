@@ -1,7 +1,7 @@
-import { Component, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { EventEmitter } from '@angular/core';
 import { MustMatch } from '../../helpers/validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-component',
@@ -13,8 +13,9 @@ export class RegisterComponent {
   @Output() onRegister: EventEmitter<any> = new EventEmitter<any>();
 
   registrationForm: FormGroup;
+  submitted: boolean;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.registrationForm = this.formBuilder.group({
       firstName: new FormControl('', [
         Validators.required, 
@@ -41,11 +42,16 @@ export class RegisterComponent {
   }
 
   public submitRegistrationForm(): void {
+    this.submitted = true;
     this.onRegister.emit(this.registrationForm.getRawValue());
   }
 
   public clearRegistrationForm(): void {
     this.registrationForm.reset();
+  }
+
+  public routeToLogin() {
+    this.router.navigate(['/login']);
   }
 
 }
