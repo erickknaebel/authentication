@@ -1,1 +1,54 @@
-<p>register component works!</p>
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Register For Access</h3>
+                </div>
+                <div class="panel-body">
+                    <form >
+                        <div class="row" [formGroup]="registrationForm">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" name="firstName" id="firstName" class="form-control input-sm"
+                                    formControlName="firstName" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" name="lastName" id="lastName" class="form-control input-sm"
+                                    formControlName="lastName" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="email" name="emailAddress" id="emailAddress" class="form-control input-sm"
+                                    formControlName="emailAddress" placeholder="Email Address">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" class="form-control input-sm"
+                                    formControlName="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="password" name="passwordConfirmation" id="passwordConfirmation"
+                                    class="form-control input-sm" formControlName="passwordConfirmation" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" name="displayName" id="displayName"
+                                    class="form-control input-sm" formControlName="displayName" placeholder="Display Name">
+                                </div>
+                            </div>
+                        </div>
+                        <input value="Register" class="btn btn-info btn-block" (click)='submitRegistration()'>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
