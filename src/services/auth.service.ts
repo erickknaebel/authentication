@@ -1,27 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Router } from '@angular/router'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { environment } from '../environments/environment';
+import { User } from 'src/interfaces/user';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
 
-  private _registerUrl = "http://localhost:3000/api/user/create";
-  private _loginUrl = "http://localhost:3000/api/user/login";
+  private _api: string = environment.databaseConfig.baseUrl;
+  private _registerUrl: string = this._api + 'users/create';
+  private _loginUrl: string = this._api + 'users/login';
 
-  constructor(private http: HttpClient,
-              private _router: Router) { }
+  constructor(private _http: HttpClient) { }
 
-  registerUser(user) {
-    return this.http.post<any>(this._registerUrl, user)
+  registerUser(user: User): Observable<any> {
+    return this._http.post(
+      this._registerUrl,
+      JSON.stringify(user),
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' });
   }
 
-  loginUser(user) {
-    return this.http.post<any>(this._loginUrl, user)
+  loginUser(user: User): Observable<any> {
+    return this._http.post(
+      this._loginUrl,
+      JSON.stringify(user),
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' });
   }
 
-  logoutUser() {
+  logoutUser(): void {
     localStorage.removeItem('token')
-    this._router.navigate(['/protected'])
   }
 
   getToken() {
@@ -29,6 +36,6 @@ export class AuthService {
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token')    
+    return !!localStorage.getItem('token')
   }
 }

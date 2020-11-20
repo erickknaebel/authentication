@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Subscriber } from 'rxjs';
+import { Router } from '@angular/router';
 import { RegisterComponent } from 'src/components/register/register.component';
-import { UserAccessService } from 'src/services/user-access.service';
+import { Register } from 'src/interfaces/register';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-register-container',
@@ -12,12 +13,13 @@ export class RegisterContainer {
 
   @ViewChild(RegisterComponent, null) registerForm:RegisterComponent;
 
-  constructor(private userAccessService: UserAccessService) { }
+  constructor(private _as: AuthService, private _router: Router) { }
 
-  submitRegistrationForm(data: any) {
-    this.userAccessService.register(data).subscribe(result => {
+  submitRegistrationForm(data: Register) {
+    this._as.registerUser(data).subscribe(response => {
       this.registerForm.clearRegistrationForm();
-      console.log(result)
+      localStorage.setItem('token', response);
+      this._router.navigate(['protected']);
     }, err => {
       console.log(JSON.parse(err.error).Error)
     });

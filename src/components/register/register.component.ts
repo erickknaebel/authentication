@@ -12,11 +12,11 @@ export class RegisterComponent {
 
   @Output() onRegister: EventEmitter<any> = new EventEmitter<any>();
 
-  registrationForm: FormGroup;
-  submitted: boolean;
+  private registrationForm: FormGroup;
+  private _submitted: boolean;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
-    this.registrationForm = this.formBuilder.group({
+  constructor(private _formBuilder: FormBuilder, private _router: Router) {
+    this.registrationForm = this._formBuilder.group({
       firstName: new FormControl('', [
         Validators.required, 
         Validators.pattern("[a-zA-Z]{5,}")
@@ -42,7 +42,7 @@ export class RegisterComponent {
   }
 
   public submitRegistrationForm(): void {
-    this.submitted = true;
+    this._submitted = true;
     this.onRegister.emit(this.registrationForm.getRawValue());
   }
 
@@ -51,7 +51,7 @@ export class RegisterComponent {
   }
 
   public routeToLogin() {
-    this.router.navigate(['/login']);
+    this._router.navigate(['/login']);
   }
 
 }
