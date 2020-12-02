@@ -14,7 +14,7 @@ export class LoginComponent {
 
   constructor(private _formBuilder: FormBuilder) {
     this.loginForm = this._formBuilder.group({
-      emailAddress: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
       ]),
