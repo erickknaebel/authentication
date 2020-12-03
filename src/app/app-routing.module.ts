@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
+import { AuthGuard } from 'src/auth.guard';
 import { LoginContainer } from 'src/containers/login/login.container';
 import { ProtectedComponent } from 'src/components/protected/protected.component';
 import { RegisterContainer } from 'src/containers/register/register.container';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from 'src/auth.guard';
 
 const routes: Routes = [
   { path: '', component: RegisterContainer },
@@ -16,4 +16,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

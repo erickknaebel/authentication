@@ -2,19 +2,19 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { Components } from '../components';
-import { Containers } from '../containers';
+import { COMPONENTS } from '../components';
+import { CONTAINERS } from '../containers';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Material } from 'src/material';
+import { MATERIAL } from 'src/material';
 import { NgModule } from '@angular/core';
-import { Services } from 'src/services';
+import { SERVICES } from 'src/services';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Components,
-    Containers
+    COMPONENTS,
+    CONTAINERS
   ],
   imports: [
     AppRoutingModule,
@@ -22,10 +22,10 @@ import { Services } from 'src/services';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    Material,
+    MATERIAL,
     ReactiveFormsModule,
   ],
-  providers: [Services],
+  providers: [SERVICES],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

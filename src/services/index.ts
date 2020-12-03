@@ -1,5 +1,5 @@
 import { AuthService } from './auth.service';
 
-export const Services = [
+export const SERVICES = [
     AuthService
-]
+];

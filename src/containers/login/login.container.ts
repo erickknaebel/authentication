@@ -1,15 +1,17 @@
-import { AuthService } from "src/services/auth.service";
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { User } from "src/interfaces/user";
-import { saveUserInfo } from "../../helpers/user.info";
+import { AuthService } from 'src/services/auth.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { saveUserInfo } from '../../helpers/user.info';
+import { User } from 'src/interfaces/user';
+
 
 @Component({
-  selector: "app-login-container",
+  selector: 'app-login-container',
   template:
-    '<app-login-component (onLogin)="submitLoginForm($event)"></app-login-component>',
+    '<app-login-component (login)="submitLoginForm($event)"></app-login-component>',
   styles: [],
 })
+
 export class LoginContainer {
   constructor(private _as: AuthService, private _router: Router) {}
 
@@ -17,10 +19,10 @@ export class LoginContainer {
     this._as.loginUser(data).subscribe(
       (res) => {
         saveUserInfo({
-          token: res.headers.get("Authorization"),
-          user: res.body["data"],
+          token: res.headers.get('Authorization'),
+          user: res.body.data,
         });
-        this._router.navigate(["protected"]);
+        this._router.navigate(['protected']);
       },
       (err) => {
         console.log(err);

@@ -1,4 +1,4 @@
-import { TagContentType } from "@angular/compiler";
+import { TagContentType } from '@angular/compiler';
 
 const fs = require('fs');
 const targetDirectory = './src/environments'
@@ -40,7 +40,7 @@ envConfigFile = `export const environment = {
         production: ${params['prod'] ? params['prod'] : false},
         port: ${params['port'] ? params['port'] : 4200},
         databaseConfig: {
-         baseUrl: '${params['bseUrl'] ? params['baseUrl'] : 'http://localhost:3000/api/v1'}'
+         baseUrl: '${params['bseUrl'] ? params['baseUrl'] : 'http://localhost:3000/api/v1/'}'
         }
      };`;
 
