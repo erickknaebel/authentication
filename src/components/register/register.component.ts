@@ -25,7 +25,7 @@ export class RegisterComponent {
         Validators.required, 
         Validators.pattern("[a-zA-Z]{5,}")
       ]),
-      emailAddress: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
       ]),

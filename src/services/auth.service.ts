@@ -8,13 +8,13 @@ import { map, tap } from "rxjs/operators";
 @Injectable()
 export class AuthService {
   private _api: string = environment.databaseConfig.baseUrl;
-  private _registerUrl: string = this._api + "users/create";
+  private _registerUrl: string = this._api + "users/register";
   private _loginUrl: string = this._api + "users/login";
 
   constructor(private _http: HttpClient) {}
 
   registerUser(user: any): Observable<any> {
-    return this._http.post(this._registerUrl, JSON.stringify(user), {
+    return this._http.post(this._registerUrl, user, {
       headers: new HttpHeaders({ "Content-Type": "application/json" }),
       responseType: "text",
     });

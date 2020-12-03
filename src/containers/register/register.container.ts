@@ -16,10 +16,11 @@ export class RegisterContainer {
   constructor(private _as: AuthService, private _router: Router) { }
 
   submitRegistrationForm(data: Register) {
-    this._as.registerUser(data).subscribe(response => {
+    delete data.confirmPassword;
+    delete data.displayName;
+    this._as.registerUser(data).subscribe(() => {
       this.registerForm.clearRegistrationForm();
-      localStorage.setItem('token', response);
-      this._router.navigate(['protected']);
+      this._router.navigate(['login'])
     }, err => {
       console.log(JSON.parse(err.error).Error)
     });
