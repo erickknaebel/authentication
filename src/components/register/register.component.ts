@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
-  @Output() onRegister: EventEmitter<any> = new EventEmitter<any>();
+  @Output() register: EventEmitter<any> = new EventEmitter<any>();
 
   private registrationForm: FormGroup;
   private _submitted: boolean;
@@ -18,16 +18,16 @@ export class RegisterComponent {
   constructor(private _formBuilder: FormBuilder, private _router: Router) {
     this.registrationForm = this._formBuilder.group({
       firstName: new FormControl('', [
-        Validators.required, 
-        Validators.pattern("[a-zA-Z]{5,}")
+        Validators.required,
+        Validators.pattern('[a-zA-Z]{5,}')
       ]),
       lastName: new FormControl('', [
-        Validators.required, 
-        Validators.pattern("[a-zA-Z]{5,}")
+        Validators.required,
+        Validators.pattern('[a-zA-Z]{5,}')
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -38,12 +38,12 @@ export class RegisterComponent {
       displayName: new FormControl('', {}),
     }, {
       validator: MustMatch('password', 'confirmPassword')
-    })
+    });
   }
 
   public submitRegistrationForm(): void {
     this._submitted = true;
-    this.onRegister.emit(this.registrationForm.getRawValue());
+    this.register.emit(this.registrationForm.getRawValue());
   }
 
   public clearRegistrationForm(): void {

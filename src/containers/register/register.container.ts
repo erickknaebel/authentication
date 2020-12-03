@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
+import { Component, ViewChild } from '@angular/core';
 import { RegisterComponent } from 'src/components/register/register.component';
 import { Register } from 'src/interfaces/register';
-import { AuthService } from 'src/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-container',
-  template: '<app-register-component (onRegister)="submitRegistrationForm($event)"></app-register-component>',
+  template: '<app-register-component (register)="submitRegistrationForm($event)"></app-register-component>',
   styles: []
 })
 export class RegisterContainer {
 
-  @ViewChild(RegisterComponent, null) registerForm:RegisterComponent;
+  @ViewChild(RegisterComponent, null) registerForm: RegisterComponent;
 
   constructor(private _as: AuthService, private _router: Router) { }
 
@@ -20,9 +20,9 @@ export class RegisterContainer {
     delete data.displayName;
     this._as.registerUser(data).subscribe(() => {
       this.registerForm.clearRegistrationForm();
-      this._router.navigate(['login'])
+      this._router.navigate(['login']);
     }, err => {
-      console.log(JSON.parse(err.error).Error)
+      console.log(JSON.parse(err.error).Error);
     });
   }
 
