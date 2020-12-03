@@ -40,7 +40,7 @@ envConfigFile = `export const environment = {
         production: ${params['prod'] ? params['prod'] : false},
         port: ${params['port'] ? params['port'] : 4200},
         databaseConfig: {
-         baseUrl: '${params['bseUrl'] ? params['baseUrl'] : 'http://localhost:3000/api/'}'
+         baseUrl: '${params['bseUrl'] ? params['baseUrl'] : 'http://localhost:3000/api/v1/'}'
         }
      };`;
 

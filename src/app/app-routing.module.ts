@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginContainer },
   { path: 'register', component: RegisterContainer },
   { path: 'protected', component: ProtectedComponent, canActivate: [AuthGuard]},
-  { path: 'admin', loadChildren: () => import('../modules/admin/admin.module').then(m => m.AdminModule)}
+  { path: 'admin', loadChildren: () => import('../modules/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuard]}
 ];
 
 @NgModule({
