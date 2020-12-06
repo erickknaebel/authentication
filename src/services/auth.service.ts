@@ -4,6 +4,7 @@ import { environment } from "../environments/environment";
 import { User } from "src/interfaces/user";
 import { Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,7 @@ export class AuthService {
   private _registerUrl: string = this._api + "users/register";
   private _loginUrl: string = this._api + "users/login";
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _cs: CookieService) {}
 
   registerUser(user: any): Observable<any> {
     return this._http.post(this._registerUrl, user, {
@@ -38,5 +39,11 @@ export class AuthService {
 
   loggedIn() {
     return !!localStorage.getItem("token");
+  }
+
+  getRoles(id: string): any {
+    return this._http.get(this._api + 'users/' + id + '/roles', {
+      headers: new HttpHeaders({'Authorization': 'Bearer ' + this._cs.get('token')})
+    })
   }
 }
