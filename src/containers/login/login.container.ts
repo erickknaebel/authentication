@@ -24,10 +24,6 @@ export class LoginContainer {
         this._cs.set('userId', res.body['data']['_id'], {expires: 2});
         this._cs.set('email', res.body['data']['email'], {expires: 2})
         this._cs.set('token', res.headers.get('Authorization'))
-        // saveUserInfo({
-        //   token: res.headers.get("Authorization"),
-        //   user: res.body["data"],
-        // });
         this._as.getRoles(this._cs.get('userId')).subscribe((r) => {
           console.log(r);
           this._cs.set('permissions', r.data.roles);

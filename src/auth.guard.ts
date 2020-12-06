@@ -1,7 +1,8 @@
 import { AuthService } from "./services/auth.service";
 import { CanActivate, CanLoad, Router } from "@angular/router";
-import { Injectable } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
+import { Injectable } from "@angular/core";
+import { NgxPermissionsService } from 'ngx-permissions';
 import { Route } from "@angular/compiler/src/core";
 
 @Injectable({
@@ -12,7 +13,8 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private _as: AuthService,
     private _router: Router,
-    private _cs: CookieService
+    private _cs: CookieService,
+    private _ps: NgxPermissionsService
   ) {}
 
   canActivate(): boolean {
@@ -24,14 +26,10 @@ export class AuthGuard implements CanActivate, CanLoad {
     }
   }
 
-  public canLoad(route: Route): any {
-    //let url = route
-    console.log(route.loadChildren.url);
-
-    if (this._cs.get("permissions") === "admin") {
+  canLoad(): any {
+    if(this._ps.getPermissions()[this._cs.get('permissions')] != null) {
       return true;
     }
-    this._router.navigate(['/protected']);
     return false;
   }
 }

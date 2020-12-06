@@ -34,11 +34,11 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem("token");
+    return this._cs.get('token');
   }
 
   loggedIn() {
-    return !!localStorage.getItem("token");
+    return !!this._cs.get('token')
   }
 
   getRoles(id: string): any {
