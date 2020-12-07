@@ -1,19 +1,13 @@
-import { AuthGuard } from "src/auth.guard";
-import { LoginContainer } from "src/containers/login/login.container";
 import { NgModule } from "@angular/core";
 import { NgxPermissionsGuard } from 'ngx-permissions';
-import { ProtectedComponent } from "src/components/protected/protected.component";
-import { RegisterContainer } from "src/containers/register/register.container";
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { path: "", component: RegisterContainer },
-  { path: "login", component: LoginContainer },
-  { path: "register", component: RegisterContainer },
+  { path: '', redirectTo: 'user', pathMatch: 'full' },
   {
-    path: "protected",
-    component: ProtectedComponent,
-    canActivate: [AuthGuard],
+    path: "user",
+    loadChildren: () =>
+      import("../modules/user/user.module").then((m) => m.UserModule),
   },
   {
     path: "admin",

@@ -1,6 +1,6 @@
 import { AuthService } from 'src/services/auth.service';
 import { Component, ViewChild } from '@angular/core';
-import { RegisterComponent } from 'src/components/register/register.component';
+import { RegisterComponent } from '../../components/register/register.component';
 import { Register } from 'src/interfaces/register';
 import { Router } from '@angular/router';
 
