@@ -1,9 +1,8 @@
 import { AuthService } from "./services/auth.service";
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Router, RouterStateSnapshot } from "@angular/router";
+import { CanActivate, Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { Injectable } from "@angular/core";
 import { NgxPermissionsService } from 'ngx-permissions';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: "root",

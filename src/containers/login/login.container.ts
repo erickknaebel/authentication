@@ -5,10 +5,11 @@ import { NgxPermissionsService } from 'ngx-permissions';
 import { Router } from "@angular/router";
 import { User } from "src/interfaces/user";
 
+
 @Component({
   selector: "app-login-container",
   template:
-    '<app-login-component (onLogin)="submitLoginForm($event)"></app-login-component>',
+    '<app-login-component (login)="submitLoginForm($event)"></app-login-component>',
   styles: [],
 })
 export class LoginContainer {

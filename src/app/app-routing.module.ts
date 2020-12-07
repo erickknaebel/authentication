@@ -1,10 +1,10 @@
-import { NgModule } from "@angular/core";
+import { AuthGuard } from "src/auth.guard";
 import { LoginContainer } from "src/containers/login/login.container";
+import { NgModule } from "@angular/core";
+import { NgxPermissionsGuard } from 'ngx-permissions';
 import { ProtectedComponent } from "src/components/protected/protected.component";
 import { RegisterContainer } from "src/containers/register/register.container";
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGuard } from "src/auth.guard";
-import { NgxPermissionsGuard } from 'ngx-permissions';
 
 const routes: Routes = [
   { path: "", component: RegisterContainer },

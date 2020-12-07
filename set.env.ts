@@ -1,4 +1,4 @@
-import { TagContentType } from "@angular/compiler";
+import { TagContentType } from '@angular/compiler';
 
 const fs = require('fs');
 const targetDirectory = './src/environments'

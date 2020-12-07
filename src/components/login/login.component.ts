@@ -13,7 +13,7 @@ import { CookieService } from "ngx-cookie-service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
-  @Output() onLogin: EventEmitter<any> = new EventEmitter<any>();
+  @Output() login: EventEmitter<any> = new EventEmitter<any>();
 
   private loginForm: FormGroup;
 
@@ -28,7 +28,7 @@ export class LoginComponent {
   }
 
   public submitLoginForm(): void {
-    this.onLogin.emit(this.loginForm.getRawValue());
+    this.login.emit(this.loginForm.getRawValue());
   }
 
   public clearRegistrationForm(): void {
