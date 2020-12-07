@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MATERIAL } from 'src/material';
 import { NgModule } from '@angular/core';
+import { NgxPermissionsModule } from 'ngx-permissions';
 import { SERVICES } from 'src/services';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { SERVICES } from 'src/services';
     FormsModule,
     HttpClientModule,
     MATERIAL,
+    NgxPermissionsModule.forRoot(),
     ReactiveFormsModule,
   ],
   providers: [SERVICES],

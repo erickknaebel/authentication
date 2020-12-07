@@ -20,7 +20,7 @@ export class RegisterContainer {
     delete data.displayName;
     this._as.registerUser(data).subscribe(() => {
       this.registerForm.clearRegistrationForm();
-      this._router.navigate(['login']);
+      this._router.navigate(['login'])
     }, err => {
       console.log(JSON.parse(err.error).Error);
     });
