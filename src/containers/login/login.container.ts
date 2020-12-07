@@ -1,9 +1,9 @@
 import { AuthService } from "src/services/auth.service";
 import { Component } from "@angular/core";
+import { CookieService } from "ngx-cookie-service";
+import { NgxPermissionsService } from 'ngx-permissions';
 import { Router } from "@angular/router";
 import { User } from "src/interfaces/user";
-import { saveUserInfo } from "../../helpers/user.info";
-import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: "app-login-container",
@@ -15,7 +15,8 @@ export class LoginContainer {
   constructor(
     private _as: AuthService,
     private _router: Router,
-    private _cs: CookieService
+    private _cs: CookieService,
+    private _ps: NgxPermissionsService,
   ) {}
 
   submitLoginForm(data: User) {
@@ -25,8 +26,8 @@ export class LoginContainer {
         this._cs.set('email', res.body['data']['email'], {expires: 2})
         this._cs.set('token', res.headers.get('Authorization'))
         this._as.getRoles(this._cs.get('userId')).subscribe((r) => {
-          console.log(r);
           this._cs.set('permissions', r.data.roles);
+            this._ps.loadPermissions([r.data.roles]);
         });
         this._router.navigate(["protected"]);
       },

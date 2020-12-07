@@ -4,6 +4,7 @@ import { ProtectedComponent } from "src/components/protected/protected.component
 import { RegisterContainer } from "src/containers/register/register.container";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "src/auth.guard";
+import { NgxPermissionsGuard } from 'ngx-permissions';
 
 const routes: Routes = [
   { path: "", component: RegisterContainer },
@@ -18,12 +19,13 @@ const routes: Routes = [
     path: "admin",
     data: {
       permissions: {
-        only: 'ADMIN'
+        only: ['ADMIN'],
+        redirectTo: '/login'
       }
     },
     loadChildren: () =>
       import("../modules/admin/admin.module").then((m) => m.AdminModule),
-    canLoad: [AuthGuard]
+    canLoad: [NgxPermissionsGuard]
   },
 ];
 

@@ -1,14 +1,14 @@
 import { AuthService } from "./services/auth.service";
-import { CanActivate, CanLoad, Router } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Router, RouterStateSnapshot } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { Injectable } from "@angular/core";
 import { NgxPermissionsService } from 'ngx-permissions';
-import { Route } from "@angular/compiler/src/core";
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: "root",
 })
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanActivate {
 
   constructor(
     private _as: AuthService,
@@ -26,10 +26,14 @@ export class AuthGuard implements CanActivate, CanLoad {
     }
   }
 
-  canLoad(): any {
-    if(this._ps.getPermissions()[this._cs.get('permissions')] != null) {
-      return true;
-    }
-    return false;
-  }
+  // canLoad(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  //   console.log(route.data)
+  //   if (route.data.permissions) {
+  //     console.log('only.....')
+  //     if (this._cs.get('permissionsss') == route.data.permissions.only) {
+  //       return true
+  //     }
+  //     return false;
+  //   }
+  // }
 }

@@ -9,11 +9,8 @@ import { NgxPermissionsService } from 'ngx-permissions';
 })
 export class AppComponent implements OnInit {
  
-  constructor(private _ps: NgxPermissionsService, private _http: HttpClient) {}
+  constructor() {}
 
   ngOnInit(): void {
-    const permissions: string[] = ["ADMIN", "USER"];
-
-    this._ps.loadPermissions(permissions);
   }
 }
