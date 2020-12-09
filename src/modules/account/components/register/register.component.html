@@ -26,10 +26,6 @@
                         <mat-label>Confirm Password</mat-label>
                         <input matInput type="password" formControlName="confirmPassword" required value="">
                     </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Display Name</mat-label>
-                        <input matInput formControlName="displayName" value="">
-                    </mat-form-field>
                     <button mat-raised-button color="primary" [disabled]="!registrationForm.valid"
                         (click)="submitRegistrationForm()">Send</button>
                     <button mat-raised-button color="warn" (click)="clearRegistrationForm()">Reset</button>

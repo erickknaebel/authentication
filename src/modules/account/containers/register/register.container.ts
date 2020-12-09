@@ -1,7 +1,7 @@
 import { AuthService } from 'src/services/auth.service';
 import { Component, ViewChild } from '@angular/core';
+import { IRegister } from 'src/interfaces/IRegister';
 import { RegisterComponent } from '../../components/register/register.component';
-import { Register } from 'src/interfaces/register';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,12 +15,10 @@ export class RegisterContainer {
 
   constructor(private _as: AuthService, private _router: Router) { }
 
-  submitRegistrationForm(data: Register) {
-    delete data.confirmPassword;
-    delete data.displayName;
-    this._as.registerUser(data).subscribe(() => {
+  submitRegistrationForm(data: IRegister) {
+    this._as.register(data).subscribe(() => {
       this.registerForm.clearRegistrationForm();
-      this._router.navigate(['login'])
+      this._router.navigate(['account'])
     }, err => {
       console.log(JSON.parse(err.error).Error);
     });

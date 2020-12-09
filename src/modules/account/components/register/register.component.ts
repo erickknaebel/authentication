@@ -13,7 +13,6 @@ export class RegisterComponent {
   @Output() register: EventEmitter<any> = new EventEmitter<any>();
 
   private registrationForm: FormGroup;
-  private _submitted: boolean;
 
   constructor(private _formBuilder: FormBuilder, private _router: Router) {
     this.registrationForm = this._formBuilder.group({
@@ -34,15 +33,13 @@ export class RegisterComponent {
       ]),
       confirmPassword: new FormControl('', [
         Validators.required,
-      ]),
-      displayName: new FormControl('', {}),
+      ])
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });
   }
 
   public submitRegistrationForm(): void {
-    this._submitted = true;
     this.register.emit(this.registrationForm.getRawValue());
   }
 

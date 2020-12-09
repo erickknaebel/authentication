@@ -3,18 +3,18 @@ import { NgxPermissionsGuard } from 'ngx-permissions';
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'user', pathMatch: 'full' },
+  { path: '', redirectTo: 'account', pathMatch: 'full' },
   {
-    path: "user",
+    path: "account",
     loadChildren: () =>
-      import("../modules/user/user.module").then((m) => m.UserModule),
+      import("../modules/account/account.module").then((m) => m.AccountModule),
   },
   {
     path: "admin",
     data: {
       permissions: {
         only: ['ADMIN'],
-        redirectTo: '/login'
+        redirectTo: '/account'
       }
     },
     loadChildren: () =>

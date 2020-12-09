@@ -2,10 +2,9 @@ import { CONTAINERS } from './containers';
 import { COMPONENTS } from './components';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserRoutingModule } from './user-routing.module';
+import { AccountRoutingModule } from './account-routing.module';
 import { MATERIAL } from 'src/material';
 import { NgModule } from '@angular/core';
-import { SERVICES } from 'src/services';
 
 @NgModule({
   declarations: [
@@ -13,12 +12,11 @@ import { SERVICES } from 'src/services';
     CONTAINERS
   ],
   imports: [
+    AccountRoutingModule,
     CommonModule,
     FormsModule,
-    UserRoutingModule,
     MATERIAL,
     ReactiveFormsModule,
-  ],
-  providers: [SERVICES]
+  ]
 })
-export class UserModule { }
+export class AccountModule { }
