@@ -24,7 +24,10 @@ export class LoginContainer implements OnInit {
   submitLoginForm(data: ILogin) {
     this._as.login(data).subscribe(response => {
         console.log(response)
-        //this._router.navigate(['/admin']);
+        this._router.navigate(['/welcome']);
+        console.log(this._as.authenitcated)
+    }, error => {
+      console.log(error)
     });
   }
 }

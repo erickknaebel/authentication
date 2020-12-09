@@ -28,18 +28,10 @@ export class AppComponent implements OnInit {
      * and load them at app startup to prevent user from
      * having to login on page refresh
      */
-    
-    this.intialize();
-  }
-
-  intialize() {
-    if(this._as.status()) {
+      this._as.status();
       this._ps.loadPermissions([this._cs.get("permissions")]);
       this.user$ = this._as.user;
       this.authenticated$ = this._as.authenitcated;
-    } else {
-      this._router.navigate(['/account'])
-    }
   }
 
   logout() {

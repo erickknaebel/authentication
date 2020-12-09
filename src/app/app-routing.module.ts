@@ -1,9 +1,21 @@
 import { NgModule } from "@angular/core";
-import { NgxPermissionsGuard } from 'ngx-permissions';
+import { NgxPermissionsGuard } from "ngx-permissions";
 import { Routes, RouterModule } from "@angular/router";
+import { WelcomeComponent } from "./welcome/welcome.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'account', pathMatch: 'full' },
+  { path: "*", redirectTo: "account", pathMatch: "full" },
+  {
+    path: "welcome",
+    data: {
+      permissions: { 
+        only: ["ADMIN", "USER"], 
+        redirectTo: "/account" 
+      } 
+    },
+    component: WelcomeComponent,
+    canActivate: [NgxPermissionsGuard],
+  },
   {
     path: "account",
     loadChildren: () =>
@@ -13,13 +25,13 @@ const routes: Routes = [
     path: "admin",
     data: {
       permissions: {
-        only: ['ADMIN'],
-        redirectTo: '/account'
+        only: ["ADMIN"],
+        redirectTo: "/account",
       }
     },
     loadChildren: () =>
       import("../modules/admin/admin.module").then((m) => m.AdminModule),
-    canLoad: [NgxPermissionsGuard]
+    canLoad: [NgxPermissionsGuard],
   },
 ];
 

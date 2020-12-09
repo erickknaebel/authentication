@@ -61,8 +61,7 @@ export class AuthService {
             map((u) => {
               this._cs.set("permissions", u["data"]["roles"]);
               this._ps.loadPermissions([this._cs.get("permissions")]);
-              this._authenticated.next(true);
-              return this._http.get('/admin')
+              this.status();
             })
           );
         })
@@ -74,17 +73,16 @@ export class AuthService {
    * @desription Removes cookies and authentication data
    * @returns {Void} Void
    */
-  logout(): Observable<any> {
+  logout(): void {
     this._user.next("");
     this._authenticated.next(false);
-    this._ps.removePermission(this._cs.get('permissions'))
-    console.log(this._ps.getPermissions())
+    this._ps.flushPermissions();
     this._cs.set("loginStatus", "0");
     this._cs.delete("userId", "/");
     this._cs.delete("email", "/");
     this._cs.delete("token", "/");
     this._cs.delete("permissions", "/");
-    return this._http.get('/logout')
+    window.location.replace("/account");
   }
 
   /**
@@ -94,38 +92,45 @@ export class AuthService {
    * @returns {Boolean} Boolean
    */
   status(): boolean {
-    const loginStatus = this._cs.get("loginStatus");
-    const token = this._cs.get("token");
+    let loginStatus = this._cs.get("loginStatus");
+    let token = this._cs.get("token");
+
+    console.log(loginStatus);
 
     if (loginStatus === "1") {
+      console.log("login status is set to: " + loginStatus);
 
       if (token == "" || token == null || token == undefined) {
-        this._user.next('');
+        console.log("logged in is: " + false);
+        this._user.next("");
         this._authenticated.next(false);
         return false;
       }
 
-      const decoded = jwt_decode(token);
+      // let decoded = jwt_decode(token);
 
-      console.log(decoded);
+      // console.log(decoded);
 
-      if (decoded["exp"] === undefined) {
-        this._user.next('');
-        this._authenticated.next(false);
-        return false;
-      }
+      // if (decoded["exp"] === undefined) {
+      //   this._user.next('');
+      //   this._authenticated.next(false);
+      //   return false;
+      // }
 
-      const date = new Date(0);
+      // let date = new Date(0);
 
-      let tokenExpDate = date.setUTCSeconds(decoded["exp"]);
+      // let tokenExpDate = date.setUTCSeconds(decoded["exp"]);
 
-      if (tokenExpDate.valueOf() > new Date().valueOf()) {
-        this._user.next(this._cs.get("email"));
-        this._authenticated.next(true);
-        return true;
-      }
+      // if (tokenExpDate.valueOf() > new Date().valueOf()) {
+      //   this._user.next(this._cs.get("email"));
+      //   this._authenticated.next(true);
+      //   return true;
+      // }
+      this._user.next(this._cs.get("email"));
+      this._authenticated.next(true);
+      return true;
     }
-    this._user.next('');
+    this._user.next("");
     this._authenticated.next(false);
     return false;
   }

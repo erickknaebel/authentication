@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { SharedModule } from '../modules/shared/shared.module'
+import { SharedModule } from '../modules/shared/shared.module';
+import { WelcomeComponent } from './welcome/welcome.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent
   ],
   imports: [
     AppRoutingModule,
