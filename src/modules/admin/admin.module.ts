@@ -4,7 +4,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { SERVICES } from 'src/services';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { SERVICES } from 'src/services';
       permissionsIsolate: true,
       rolesIsolate: true
     })
-  ],
-  providers: [SERVICES],
+  ]
 })
 export class AdminModule { }

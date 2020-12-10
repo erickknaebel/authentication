@@ -1,1 +1,10 @@
 <p>admin component works!</p>
+<div *ngFor="let user of users?.data">
+    <div>First Name: {{user.firstName}}</div>
+    <div>Last Name: {{user.firstName}}</div>
+    <div>Email Address: {{user.email}}</div>
+    <div>User Id: {{user._id}}</div>
+    <div>Created Date: {{user.createdAt | date}}</div>
+    <div>Updated Date: {{user.updatedAt | date}}</div>
+    <hr/>
+</div>

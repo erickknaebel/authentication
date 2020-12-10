@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
 import { NgxPermissionsService } from 'ngx-permissions';
 import { Router } from "@angular/router";
-import { User } from "src/interfaces/user";
+import { ILogin } from "src/interfaces/ILogin";
 
 
 @Component({
@@ -20,8 +20,8 @@ export class LoginContainer {
     private _ps: NgxPermissionsService,
   ) {}
 
-  submitLoginForm(data: User) {
-    this._as.loginUser(data).subscribe(
+  submitLoginForm(data: ILogin) {
+    this._as.login(data).subscribe(
       (res) => {
         this._cs.set('userId', res.body['data']['_id'], {expires: 2});
         this._cs.set('email', res.body['data']['email'], {expires: 2})

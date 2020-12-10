@@ -1,3 +1,20 @@
+<ng-container *ngIf="(authenticated$ | async)">
+    <div>
+        is authenticated: {{authenticated$ | async}}
+        <br>
+        user is: {{user$ | async}}
+        <br/>
+        <ng-template [ngxPermissionsOnly]="['ADMIN', 'USER']">
+            <button [routerLink]="['/welcome']">Welcome</button>
+        </ng-template>
+       
+        <ng-template [ngxPermissionsOnly]="['ADMIN']">
+            <button [routerLink]="['/admin']">Admin</button>
+        </ng-template>
+        <button *ngIf="(authenticated$ | async)"  (click)="logout($event)">Logout</button>
+    </div>
+</ng-container>
+
 <div class="container">
     <router-outlet></router-outlet>
 </div>

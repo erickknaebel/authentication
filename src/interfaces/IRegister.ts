@@ -1,8 +1,8 @@
-export interface Register {
+export interface IRegister {
     firstName: string;
     lastName: string;
     emailAddress: string;
     password: string;
-    confirmPassword: string;
+    confirmPassword?: string;
     displayName?: string;
 }

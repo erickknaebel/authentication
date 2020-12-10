@@ -1,4 +1,3 @@
-import { ADMIN_COMPONENTS } from './components';
 import { AdminContainer } from './containers/admin/admin.container';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
