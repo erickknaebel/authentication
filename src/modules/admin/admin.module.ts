@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
-
 @NgModule({
   declarations: [
     ADMIN_COMPONENTS,
