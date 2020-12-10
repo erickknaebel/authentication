@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <span>Auth Application</span>
+    <div>
+        <ng-template [ngxPermissionsOnly]="['ADMIN', 'USER']">
+            <button mat-button [routerLink]="['/welcome']">Welcome</button>
+        </ng-template>
+        <ng-template [ngxPermissionsOnly]="['ADMIN']">
+            <button mat-button [routerLink]="['/admin']">Admin</button>
+        </ng-template>
+        <button mat-button *ngIf="(authenticated$ | async)" (click)="logout($event)">Logout</button>
+    </div>
+    <span class="spacer"></span>
+    <button mat-button>Howdy, {{user$ | async}}</button>
+</mat-toolbar>
