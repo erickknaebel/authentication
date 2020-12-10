@@ -106,21 +106,15 @@ export class AuthService {
         this._authenticated.next(false);
         return false;
       }
-
       // let decoded = jwt_decode(token);
-
-      // console.log(decoded);
-
+      // console.log(decoded)
       // if (decoded["exp"] === undefined) {
       //   this._user.next('');
       //   this._authenticated.next(false);
       //   return false;
       // }
-
       // let date = new Date(0);
-
       // let tokenExpDate = date.setUTCSeconds(decoded["exp"]);
-
       // if (tokenExpDate.valueOf() > new Date().valueOf()) {
       //   this._user.next(this._cs.get("email"));
       //   this._authenticated.next(true);
@@ -142,6 +136,15 @@ export class AuthService {
    */
   getRoles(id: string): Observable<any> {
     return this._http.get(this._api + "account/" + id + "/roles", {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + this._cs.get("token"),
+      }),
+    });
+  }
+
+  getUsers(): Observable<any> {
+    console.log('calling get all users....')
+    return this._http.get(this._api + "account/", {
       headers: new HttpHeaders({
         Authorization: "Bearer " + this._cs.get("token"),
       }),

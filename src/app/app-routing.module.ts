@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { NgxPermissionsGuard } from "ngx-permissions";
 import { Routes, RouterModule } from "@angular/router";
-import { WelcomeComponent } from "./welcome/welcome.component";
+import { WelcomeContainer } from "../modules/shared/containers/welcome/welcome.container";
 
 const routes: Routes = [
   { path: "*", redirectTo: "account", pathMatch: "full" },
@@ -13,7 +13,7 @@ const routes: Routes = [
         redirectTo: "/account" 
       } 
     },
-    component: WelcomeComponent,
+    component: WelcomeContainer,
     canActivate: [NgxPermissionsGuard],
   },
   {

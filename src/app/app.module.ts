@@ -6,12 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { SharedModule } from '../modules/shared/shared.module';
-import { WelcomeComponent } from './welcome/welcome.component'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    WelcomeComponent
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
